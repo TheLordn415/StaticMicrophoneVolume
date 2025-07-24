@@ -55,7 +55,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self._check_worker_stopped_timer.stop()
             self.workerprocess.join()
             self.pbrun.setText("Start")
-            print("Worker has stopped")
+            print(f"{self.workerprocess.name} has stopped")
 
     def _initDevicesList(self):
         self.devicesList.removeItem(0)
@@ -72,7 +72,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tray_icon = QSystemTrayIcon(self)
         self.tray_icon.setIcon(QIcon(u":/images/images/microphone-black-shape.ico"))  # Путь к вашей иконке
 
-        # Создаем меню для иконки в трее
         tray_menu = QMenu()
 
         restore_action = QAction("Restore", self)
@@ -85,7 +84,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.tray_icon.setContextMenu(tray_menu)
 
-        # Обработка клика по иконке
         self.tray_icon.activated.connect(self._on_tray_icon_activated)
 
     def _minimize_to_tray(self):
@@ -98,13 +96,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """Restore window from system tray"""
         self.show()
         self.showNormal()
-        self.raise_()  # Bring window to front
+        self.raise_()
         self.activateWindow()
         self.tray_icon.hide()
 
     def _on_tray_icon_activated(self, reason):
         """Handle tray icon click"""
-        if reason == QSystemTrayIcon.Trigger:  # Left click
+        if reason == QSystemTrayIcon.Trigger:
             if self.isHidden():
                 self._restore_from_tray()
             else:
@@ -115,14 +113,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if event.type() == QEvent.Type.WindowStateChange:
             if self.isMinimized():
-                self.hide()             # Скрываем окно
-                self.tray_icon.show()   # Показываем иконку в трее
+                self.hide()
+                self.tray_icon.show()
 
                 self.tray_icon.showMessage(
                     "Static Microphone Volume is minimized.",
                     "It is now running in the background. Click the icon to restore it.",
                     QSystemTrayIcon.Information,
-                    5000  # Продолжительность показа в мс
+                    5000
                 )
 
         super().changeEvent(event)
@@ -130,4 +128,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def closeEvent(self, event):
         """Handle window close event"""
         self.hide()
+
+        self.executable.value = False
+        self._check_worker_stopped()
+
         event.accept()
