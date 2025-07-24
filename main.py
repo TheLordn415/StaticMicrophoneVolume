@@ -1,4 +1,5 @@
 import sys
+import multiprocessing
 
 from devices import MicrophoneManager
 from controllers import MicrophoneVolumeController
@@ -7,6 +8,8 @@ from gui.user_interface.application import UIApplication
 
 
 def main():
+    multiprocessing.freeze_support()
+    multiprocessing.set_start_method("spawn")
 
     sys._excepthook = sys.excepthook
 
