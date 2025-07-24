@@ -70,7 +70,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def _setup_tray_icon(self):
         """Setup system tray icon and menu"""
         self.tray_icon = QSystemTrayIcon(self)
-        self.tray_icon.setIcon(QIcon(u":/images/images/microphone-black-shape.ico"))  # Путь к вашей иконке
+        self.tray_icon.setIcon(QIcon(u":/images/images/microphone-black-shape.ico"))
 
         tray_menu = QMenu()
 
