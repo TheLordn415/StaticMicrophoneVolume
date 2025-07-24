@@ -51,7 +51,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self._check_worker_stopped_timer.start(100)
 
     def _check_worker_stopped(self):
-        if not self.workerprocess.is_alive():
+        if self.workerprocess and not self.workerprocess.is_alive():
             self._check_worker_stopped_timer.stop()
             self.workerprocess.join()
             self.pbrun.setText("Start")
