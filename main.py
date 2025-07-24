@@ -1,9 +1,27 @@
+import sys
+
 from devices import MicrophoneManager
 from controllers import MicrophoneVolumeController
 from app import VolumeCycler
+from gui.user_interface.application import UIApplication
 
 
 def main():
+    sys._excepthook = sys.excepthook
+
+    def exception_hook(exctype, value, traceback):
+        print("Application crashed!", exctype, value, traceback)
+        sys._excepthook(exctype, value, traceback)
+
+    sys.excepthook = exception_hook
+
+    app = UIApplication(sys.argv)
+    app.setApplicationName("StaticMicrophoneVolume")
+
+    sys.exit(app.exec())
+
+
+def previous_main():
     manager = MicrophoneManager()
     microphones = manager.list_microphones()
 

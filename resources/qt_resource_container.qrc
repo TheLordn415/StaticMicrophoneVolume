@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/microphone-black-shape.ico</file>
+    <file>images/microphone-black-shape.png</file>
+  </qresource>
+</RCC>

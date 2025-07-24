@@ -1,0 +1,1 @@
+from . import qt_resource_container_rc
