@@ -4,7 +4,7 @@ from typing import Optional
 
 from PySide6.QtCore import QEvent, QTimer
 from PySide6.QtGui import QIcon, QAction
-from PySide6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu, QApplication
+from PySide6.QtWidgets import QMainWindow, QSystemTrayIcon, QMenu, QApplication, QMessageBox
 
 from controllers import MicrophoneVolumeController
 from devices import MicrophoneManager
@@ -46,6 +46,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     device_name = self.devicesList.itemText(self.devicesList.currentIndex())
                     if not device_name:
                         print("Error: No device selected.")
+                        self._show_error_dialog("Error: No device selected.")
                         return
 
                     try:
@@ -53,14 +54,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         interval = int(self.intervalValue.text().strip())
                     except ValueError:
                         print("Error: Volume and interval must be integers.")
+                        self._show_error_dialog("Error: Volume and interval must be integers.")
                         return
 
                     if volume < 0 or volume > 100:
                         print("Error: Volume must be between 0 and 100.")
+                        self._show_error_dialog("Error: Volume must be between 0 and 100.")
                         return
 
                     if interval <= 0:
                         print("Error: Interval must be greater than 0.")
+                        self._show_error_dialog("Error: Interval must be greater than 0.")
                         return
 
                     print("Running...")
@@ -139,6 +143,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self._restore_from_tray()
             else:
                 self._minimize_to_tray()
+
+    def _show_error_dialog(self, description: str):
+        """Show error dialog"""
+        msg = QMessageBox(self)
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setWindowTitle("Test")
+        msg.setText(description)
+        msg.exec()
 
     def changeEvent(self, event: QEvent):
         """Handle window state changes like minimize"""
