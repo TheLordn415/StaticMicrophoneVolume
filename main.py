@@ -7,6 +7,7 @@ from gui.user_interface.application import UIApplication
 
 
 def main():
+
     sys._excepthook = sys.excepthook
 
     def exception_hook(exctype, value, traceback):

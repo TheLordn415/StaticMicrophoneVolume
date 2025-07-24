@@ -1,3 +1,4 @@
+import warnings
 from typing import Optional
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 from comtypes import CLSCTX_ALL
@@ -5,6 +6,7 @@ from ctypes import cast, POINTER
 
 from pycaw.utils import AudioDevice
 
+warnings.filterwarnings("ignore", category=UserWarning, module="pycaw.utils")
 
 class MicrophoneVolumeController:
     """Controls microphone volume on Windows via pycaw"""
