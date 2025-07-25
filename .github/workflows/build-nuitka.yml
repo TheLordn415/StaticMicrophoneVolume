@@ -30,8 +30,9 @@ jobs:
         python -m nuitka ^
           --standalone ^
           --enable-plugin=pyside6 ^
+          --assume-yes-for-downloads ^
           --windows-icon-from-ico=resources/images/microphone-black-shape.ico ^
-          --windows-disable-console ^
+          --windows-console-mode=disable ^
           --output-dir=build ^
           main.py
     
