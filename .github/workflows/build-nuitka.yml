@@ -28,6 +28,7 @@ jobs:
       shell: cmd
       run: |
         python -m nuitka ^
+          --onefile ^
           --standalone ^
           --enable-plugin=pyside6 ^
           --assume-yes-for-downloads ^
@@ -35,8 +36,6 @@ jobs:
           --windows-console-mode=disable ^
           --output-dir=build ^
           main.py
-    
-    
 
     - name: Upload compiled executable
       uses: actions/upload-artifact@v4
