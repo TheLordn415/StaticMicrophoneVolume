@@ -35,13 +35,12 @@ jobs:
           --windows-icon-from-ico=resources/images/microphone-black-shape.ico ^
           --windows-console-mode=disable ^
           --output-dir=build ^
-          --company-name="TheLordn415 GitHub"
-          --product-name="StaticMicrophoneVolume"
-          --product-version="1.0.0"
-          --file-version="1.0.0.0"
-          --file-description="Static Microphone Volume"
-          --copyright="(c) 2025 TheLordn415 GitHub"
-
+          --company-name="TheLordn415 GitHub" ^
+          --product-name="StaticMicrophoneVolume" ^
+          --product-version="1.0.0" ^
+          --file-version="1.0.0.0" ^
+          --file-description="Static Microphone Volume" ^
+          --copyright="(c) 2025 TheLordn415 GitHub" ^
           main.py
 
     - name: Upload compiled executable
