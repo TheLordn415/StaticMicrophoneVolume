@@ -148,7 +148,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """Show error dialog"""
         msg = QMessageBox(self)
         msg.setIcon(QMessageBox.Icon.Critical)
-        msg.setWindowTitle("Test")
+        msg.setWindowTitle("Error occured")
         msg.setText(description)
         msg.exec()
 
