@@ -1,6 +1,10 @@
 <RCC>
   <qresource prefix="images">
+    <file>images/down-arrow.png</file>
     <file>images/microphone-black-shape.ico</file>
     <file>images/microphone-black-shape.png</file>
+  </qresource>
+  <qresource prefix="fonts">
+    <file>fonts/Audiowide-Regular.ttf</file>
   </qresource>
 </RCC>

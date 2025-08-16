@@ -36,6 +36,16 @@
     <normaloff>:/images/images/microphone-black-shape.ico</normaloff>:/images/images/microphone-black-shape.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget {
+    background-color: #1e1e1e;         /* Dark solid background */
+    color: #f0f0f0;                    /* Default light text color */
+}
+
+QWidget:hover {
+    /* Optional: slight brightness change on hover if needed */
+}</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -76,6 +86,46 @@
           <width>400</width>
           <height>22</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Audiowide</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+    background-color: #2b2b2b;         /* Dark background */
+    color: #f0f0f0;                    /* Light text color */
+    border: 1px solid #444444;         /* Subtle border */
+    border-radius: 6px;                 /* Rounded corners */
+	padding-left: 5px;
+}
+
+QComboBox:hover {
+    border: 1px solid #5a9bd5;         /* Blue border on hover */
+    background-color: #303030;          /* Slightly lighter background */
+}
+
+QComboBox:focus {
+    border: 3px solid #5a9bd5;         /* Blue border on focus */
+    background-color: #303030;          /* Slightly lighter background */
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;                        /* Width of the drop-down button */
+    border-left: 1px solid #444444;     /* Divider between text and arrow */
+    border-radius: 0 6px 6px 0;         /* Match combo box rounding */
+    background-color: #2b2b2b;          /* Match background */
+}
+
+QComboBox::down-arrow {
+    image: url(:/images/images/down-arrow.png); /* Arrow image, white */
+    width: 12px;
+    height: 12px;
+}</string>
         </property>
         <property name="editable">
          <bool>false</bool>
@@ -149,8 +199,31 @@
                 <height>16777215</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Audiowide</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #2b2b2b;      /* Dark background */
+    color: #f0f0f0;                  /* Light text color */
+    border: 1px solid #444444;       /* Subtle border */
+    border-radius: 6px;              /* Rounded corners */
+    padding: 5px 8px;                /* Inner padding */
+    selection-background-color: #5555aa; /* Text selection color */
+    selection-color: white;          /* Text selection text color */
+}
+
+QLineEdit:focus {
+    border: 3px solid #5a9bd5;       /* Blue border on focus */
+    background-color: #303030;       /* Slightly lighter on focus */
+}
+</string>
+              </property>
               <property name="placeholderText">
-               <string>Type volume from 0% to 100%</string>
+               <string>From 0% to 100%</string>
               </property>
              </widget>
             </item>
@@ -161,6 +234,12 @@
                 <width>0</width>
                 <height>22</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Audiowide</family>
+                <pointsize>14</pointsize>
+               </font>
               </property>
               <property name="text">
                <string>Volume</string>
@@ -203,6 +282,29 @@
                 <height>16777215</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <family>Audiowide</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #2b2b2b;      /* Dark background */
+    color: #f0f0f0;                  /* Light text color */
+    border: 1px solid #444444;       /* Subtle border */
+    border-radius: 6px;              /* Rounded corners */
+    padding: 5px 8px;                /* Inner padding */
+    selection-background-color: #5555aa; /* Text selection color */
+    selection-color: white;          /* Text selection text color */
+}
+
+QLineEdit:focus {
+    border: 3px solid #5a9bd5;       /* Blue border on focus */
+    background-color: #303030;       /* Slightly lighter on focus */
+}
+</string>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -210,7 +312,7 @@
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
               </property>
               <property name="placeholderText">
-               <string>Type interval in seconds</string>
+               <string>In seconds</string>
               </property>
              </widget>
             </item>
@@ -233,6 +335,12 @@
                 <width>16777215</width>
                 <height>16777215</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Audiowide</family>
+                <pointsize>14</pointsize>
+               </font>
               </property>
               <property name="text">
                <string>Interval</string>
@@ -282,6 +390,31 @@
             <height>45</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Audiowide</family>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	color: #ffffff;
+	border-radius: 22px;
+	background: #212121;
+	border: 1px solid #444444;       /* Subtle border */
+}
+
+QPushButton:hover {
+	background-color: #2a2a2a;
+}
+
+QPushButton:pressed {
+	color: #666666;
+	background-color: #1a1a1a;
+	border: 3px solid #5a9bd5;
+	padding-top: 0.5em;
+}</string>
+          </property>
           <property name="text">
            <string>Start</string>
           </property>
@@ -300,6 +433,31 @@
             <width>110</width>
             <height>45</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Audiowide</family>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	color: #ffffff;
+	border-radius: 22px;
+	background: #212121;
+	border: 1px solid #444444;       /* Subtle border */
+}
+
+QPushButton:hover {
+	background-color: #2a2a2a;
+}
+
+QPushButton:pressed {
+	color: #666666;
+	background-color: #1a1a1a;
+	border: 3px solid #5a9bd5;
+	padding-top: 0.5em;
+}</string>
           </property>
           <property name="text">
            <string>Minimize</string>
