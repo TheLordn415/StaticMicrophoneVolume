@@ -24,27 +24,28 @@ jobs:
         pip install -r requirements.txt
         pip install nuitka
 
+    - name: Generate FFI file
+      run: python add_ffi.py create
+
     - name: Compile with Nuitka
       shell: cmd
       run: |
         python -m nuitka ^
-          --onefile ^
           --standalone ^
           --enable-plugin=pyside6 ^
           --assume-yes-for-downloads ^
           --windows-icon-from-ico=resources/images/microphone-black-shape.ico ^
           --windows-console-mode=disable ^
           --output-dir=build ^
-          --company-name="TheLordn415 GitHub" ^
-          --product-name="StaticMicrophoneVolume" ^
-          --product-version="1.0.0" ^
-          --file-version="1.0.0.0" ^
-          --file-description="Static Microphone Volume" ^
-          --copyright="(c) 2025 TheLordn415 GitHub" ^
+          --windows-version-info=file_version_info.ffi ^
           main.py
 
-    - name: Upload compiled executable
+    - name: Create release archive
+      run: |
+        powershell Compress-Archive -Path build\main.dist\* -DestinationPath build\release.zip
+
+    - name: Upload compiled archive
       uses: actions/upload-artifact@v4
       with:
-        name: nuitka-build
-        path: build/
+        name: nuitka-release
+        path: build/release.zip
