@@ -1,8 +1,9 @@
 from typing import List
+from PyInstaller.utils.win32 import versioninfo
 
 
 class FFICreator:
-    """Class to generate a Windows FFI (file version info) file for Nuitka build."""
+    """Class to generate and apply Windows FFI (file version info)."""
 
     def __init__(self, version: str) -> None:
         self.version = version
@@ -49,15 +50,36 @@ VSVersionInfo(
         with open(output_path, "w", encoding="utf-8") as fs:
             fs.write(version_info)
 
+    def apply_to_executable(
+        self, exe_path: str, ffi_path: str = "file_version_info.ffi"
+    ) -> None:
+        """Apply FFI to an existing executable."""
+        vs_info = versioninfo.load_version_info_from_text_file(ffi_path)
+        versioninfo.write_version_info_to_executable(exe_path, vs_info)
+
 
 def main() -> None:
-    """Entry point to create an FFI file."""
+    """CLI for generating or applying FFI."""
+    import sys
+
     version = "1.1.0"
-    FFICreator(version).generate()
+    ffi_creator = FFICreator(version)
+
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "create":
+            ffi_creator.generate()
+            print("FFI file created.")
+        elif sys.argv[1] == "apply" and len(sys.argv) > 2:
+            exe_path = sys.argv[2]
+            ffi_creator.apply_to_executable(exe_path)
+            print(f"FFI applied to {exe_path}.")
+        else:
+            print("Usage:")
+            print("  python add_ffi.py create        # generate .ffi file")
+            print("  python add_ffi.py apply app.exe # apply ffi to exe")
+    else:
+        print("⚠️ No arguments provided. Use 'create' or 'apply'.")
 
 
 if __name__ == "__main__":
-    import sys
-
-    if len(sys.argv) > 1 and sys.argv[1] == "create":
-        main()
+    main()
